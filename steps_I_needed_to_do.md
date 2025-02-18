@@ -67,3 +67,11 @@
     1. `DOCKER_USERNAME`
     2. `DOCKER_PASSWORD`
     3. `EMAIL_TO`
+
+### Testing the workflow
+1. Triggering the workflow manually
+2. The workflow failed, because the environment variables were not set
+![img.png](images/img2.png)
+3. But at least an Email has been sent to the specified Email address in the GitHub Secrets: ![img.png](images/img3.png)
+4. Fixed by setting the environment variables in the GitHub Environment Variables ![img.png](images/img4.png)
+5. Triggering the workflow manually again
