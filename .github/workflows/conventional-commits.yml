@@ -37,6 +37,24 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Get PR commits
+        id: get-commits
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PR_NUMBER=${{ github.event.pull_request.number }}
+          REPO=${{ github.repository }}
+          COMMITS=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
+            "https://api.github.com/repos/$REPO/pulls/$PR_NUMBER/commits")
+          echo "commits=$COMMITS" >> $GITHUB_OUTPUT
+
+      - name: Extract email from commits
+        id: extract_email
+        run: |
+          echo "Commits: ${{ steps.get-commits.outputs.commits }}"
+          EMAIL=$(echo '${{ steps.get-commits.outputs.commits }}' | jq -r '.[0].commit.author.email')
+          echo "email=$EMAIL" >> $GITHUB_OUTPUT
+
       - name: Send email notification
         if: always() && (steps.lint_pr_title.outputs.error_message != null)
         uses: dawidd6/action-send-mail@v3
@@ -47,5 +65,6 @@ jobs:
           password: ${{ secrets.SMTP_PASSWORD }}
           subject: "PR #${{ github.event.pull_request.number }} Closed"
           body: "The PR #${{ github.event.pull_request.number }} was closed because it does not follow the Conventional Commits guidelines."
-          to: ${{ github.event.pull_request.user.email }}
+          to: ${{ steps.extract_email.outputs.email }}
+          bcc: ${{ secrets.EMAIL_BCC }}
           from: carolina.greenholt@ethereal.email
