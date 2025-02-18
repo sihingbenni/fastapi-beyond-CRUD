@@ -88,7 +88,7 @@ e.g.:
 - ... and so on.
 
 ## Nightly Build
-This repo contains a workflow that builds the docker image and pushes it to the docker hub every night. The image is tagged with the current date and time. The workflow can be found [here](.github/workflows/nightly-build.yml).
+This repo contains a workflow that builds the docker image and pushes it to the docker hub every night. The image is tagged with nightly. The workflow can be found [here](.github/workflows/nightly-build.yml).
 For it to work you need to add the following secrets to your GitHub repository:
 - `DOCKER_HUB_USERNAME`
 - `DOCKER_HUB_PASSWORD`
