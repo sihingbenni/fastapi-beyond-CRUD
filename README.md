@@ -70,6 +70,8 @@ docker compose up -d
 ```
 ## Running Tests
 Run the tests using this command
+
+(!! You need to install pytest before that)
 ```bash
 pytest
 ```
