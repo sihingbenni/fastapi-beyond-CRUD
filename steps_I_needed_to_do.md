@@ -75,3 +75,5 @@
 3. But at least an Email has been sent to the specified Email address in the GitHub Secrets: ![img.png](images/img3.png)
 4. Fixed by setting the environment variables in the GitHub Environment Variables ![img.png](images/img4.png)
 5. Triggering the workflow manually again
+6. This alone did not work
+7. Had to modify workflow, so it creates a ".env" file with the environment variables
