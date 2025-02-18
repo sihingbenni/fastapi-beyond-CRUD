@@ -44,5 +44,5 @@ jobs:
           password: ${{ secrets.SMTP_PASSWORD }}
           subject: "PR #${{ github.event.pull_request.number }} Closed"
           body: "The PR #${{ github.event.pull_request.number }} was closed because it does not follow the Conventional Commits guidelines."
-          to: bpuhani@usfca.edu
+          to: ${{ github.event.pull_request.user.email }}
           from: carolina.greenholt@ethereal.email
