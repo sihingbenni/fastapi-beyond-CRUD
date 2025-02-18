@@ -50,3 +50,4 @@
    1. The workflow failed because of the PR name
 5. Created PR with a valid name
    1. The workflow passed
+6. Created PR with "[WIP]" infront of the name
