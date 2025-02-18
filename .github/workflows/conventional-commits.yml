@@ -38,6 +38,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Get PR commits
+        if: always() && (steps.lint_pr_title.outputs.error_message != null)
         id: get-commits
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -50,6 +51,7 @@ jobs:
           echo "commits=$ESCAPED_COMMITS" >> $GITHUB_OUTPUT
 
       - name: Extract email from commits
+        if: always() && (steps.lint_pr_title.outputs.error_message != null)
         id: extract_email
         run: |
           echo "Commits: ${{ steps.get-commits.outputs.commits }}"
