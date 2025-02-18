@@ -8,11 +8,13 @@ on:
       - synchronize
       - reopened
 
+permissions:
+  pull-requests: write
+  statuses: write
+
 jobs:
   main:
     runs-on: ubuntu-latest
-    permissions:
-      pull-requests: write
 
     steps:
       - name: Checkout code
