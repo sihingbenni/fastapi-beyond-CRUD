@@ -36,8 +36,17 @@
 10. We are able to run the Celery worker using `sh runworker.sh`
 11. Everything is working locally
 
-## Setting up the workflow
+## Setting up the workflow for Linting the PR
 1. Creating workflow `conventional-commits.yml` in the `.github/workflows` folder
 2. Adding Secrets to the Github Repository
     1. `SMTP_USERNAME`
     2. `SMTP_PASSWORD`
+
+### Testing the workflow
+1. Created a new branch `test`
+2. made changes to `steps_I_needed_to_do.md`
+3. Commit message written in german
+4. Created PR with bs name
+   1. The workflow failed because of the PR name
+5. Created PR with a valid name
+   1. The workflow passed
