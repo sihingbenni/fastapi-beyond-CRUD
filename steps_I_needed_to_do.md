@@ -38,6 +38,7 @@
 
 ## Setting up the workflow for Linting the PR
 1. Creating workflow `conventional-commits.yml` in the `.github/workflows` folder
+   1. The workflow checks all the commits and gets the Email address from there.
 2. Adding Secrets to the Github Repository
     1. `SMTP_USERNAME`
     2. `SMTP_PASSWORD`
