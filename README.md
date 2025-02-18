@@ -86,3 +86,31 @@ e.g.:
 - Bugfixes must start with: `fix:` 
 - Documentation must start with: `docs:`
 - ... and so on.
+
+## Nightly Build
+This repo contains a workflow that builds the docker image and pushes it to the docker hub every night. The image is tagged with the current date and time. The workflow can be found [here](.github/workflows/nightly-build.yml).
+For it to work you need to add the following secrets to your GitHub repository:
+- `DOCKER_HUB_USERNAME`
+- `DOCKER_HUB_PASSWORD`
+- `SMTP_USERNAME`
+- `SMTP_PASSWORD`
+- `MAIL_TO`
+- `MAIL_BCC`
+
+Also make sure to add all your environment variables and secrets to a environment named: `.env` in GitHub
+So a .env file can be created from those: 
+```bash
+          echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" > .env
+          echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env
+          echo "JWT_ALGORITHM=${{ secrets.JWT_ALGORITHM }}" >> .env
+          echo "REDIS_HOST=${{ vars.REDIS_HOST }}" >> .env
+          echo "REDIS_PORT=${{ vars.REDIS_PORT }}" >> .env
+          echo "REDIS_URL=${{ secrets.REDIS_URL }}" >> .env
+          echo "MAIL_USERNAME=${{ secrets.MAIL_USERNAME }}" >> .env
+          echo "MAIL_PASSWORD=${{ secrets.MAIL_PASSWORD }}" >> .env
+          echo "MAIL_SERVER=${{ vars.MAIL_SERVER }}" >> .env
+          echo "MAIL_PORT=${{ vars.MAIL_PORT }}" >> .env
+          echo "MAIL_FROM=${{ vars.MAIL_FROM }}" >> .env
+          echo "MAIL_FROM_NAME=${{ vars.MAIL_FROM_NAME }}" >> .env
+          echo "DOMAIN=${{ vars.DOMAIN }}" >> .env
+```
