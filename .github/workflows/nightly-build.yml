@@ -57,11 +57,11 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/your-repo:nightly .
+          docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/fastapi-beyond-CRUD:nightly .
 
       - name: Push Docker image
         run: |
-          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/your-repo:nightly
+          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/fastapi-beyond-CRUD:nightly
 
   notify-on-failure:
     runs-on: ubuntu-latest
