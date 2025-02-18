@@ -36,16 +36,3 @@ jobs:
           gh pr close ${{ github.event.pull_request.number }} --comment "This PR is being closed because it does not follow the Conventional Commits guidelines. Please update your commit messages and reopen the PR."
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Send email notification
-        if: always() && (steps.lint_pr_title.outputs.error_message != null)
-        uses: dawidd6/action-send-mail@v3
-        with:
-          server_address: smtp.ethereal.email
-          server_port: 587
-          username: ${{ secrets.SMTP_USERNAME }}
-          password: ${{ secrets.SMTP_PASSWORD }}
-          subject: "PR #${{ github.event.pull_request.number }} Closed"
-          body: "The PR #${{ github.event.pull_request.number }} was closed because it does not follow the Conventional Commits guidelines."
-          to: ${{ github.event.pull_request.user.email }}
-          from: carolina.greenholt@ethereal.email
