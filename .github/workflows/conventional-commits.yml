@@ -46,7 +46,8 @@ jobs:
           REPO=${{ github.repository }}
           COMMITS=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
             "https://api.github.com/repos/$REPO/pulls/$PR_NUMBER/commits")
-          echo "commits=$COMMITS" >> $GITHUB_OUTPUT
+          ESCAPED_COMMITS=$(echo "$COMMITS" | jq -c '.')
+          echo "commits=$ESCAPED_COMMITS" >> $GITHUB_OUTPUT
 
       - name: Extract email from commits
         id: extract_email
